@@ -26,5 +26,28 @@ def BubbleSort(arr: list[int]) -> list[int]:
             break
     return arr
 
+"""
+InsertionSort Algorithm:
 
-print(BubbleSort([1,2,3,5,6]))
+    Inner Loop:
+    - Start by checking the second digit
+    - Put the smaller value on the left by swapping if necessary
+    - Continue with the third value and each time we create a new sorted array
+    - Each time we enter the inner loop the number of iterations increases by one
+    as we are growing our 'sorted' array always by one
+
+    Outer Loop:
+    - Repeat the inner loop (length of the list - 1) times exiting the loop if isSorted is True.
+    - Time complexity is O(n^2).
+    - Only used for small sets of data
+"""
+
+def InsertionSort(arr: list[int]) -> list[int]:
+    for i in range(1, len(arr)):
+        j = i-1
+        while arr[j] > arr[j+1] and j >= 0:
+            arr[j], arr[j+1] = arr[j+1], arr[j]
+            j -= 1
+    return arr
+
+print(InsertionSort([4,6,2,3,1,2,3,5,6]))
