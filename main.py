@@ -92,7 +92,44 @@ def merge_sort(arr: list[int]) -> list[int]:
             j += 1
             k += 1
     return arr
-        
 
+"""
+QuickSort Algorithm
+
+    Choose a pivot number from the list, normally the median from first, middle and last values
+    Place it on the start of the array
+    Now we iterate over the array and separate values which are smaller than the pivot and greater than the pivot
+    The pivot stays at the middle of both groups so its already sorted
+    We continue doing this for the smaller groups
+
+
+    Recursive algorithm
+    Time complexity of O(n log n)
+"""
+
+def quick_sort(arr: list[int], left: int, right: int) -> list[int]:
+    if left < right:
+        partition_pos = partition(arr, left, right)
+        quick_sort(arr, left, partition_pos - 1)
+        quick_sort(arr, partition_pos + 1, right)
+    return arr
+
+def partition(arr: list[int], left: int, right: int) -> int:
+    i = left
+    j = right - 1
+    pivot = arr[right]
+
+    while i < j:
+        while i < right and arr[i] <= pivot:
+            i += 1
+        while j > left and arr[j] >= pivot:
+            j -= 1
+        if i < j:
+            arr[i], arr[j] = arr[j], arr[i]
+
+    if arr[i] > pivot:
+        arr[i], arr[right] = arr[right], arr[i]
     
-print(merge_sort([4,6,2,3,1,2,3,5,6]))
+    return i
+    
+print(quick_sort([4,6,2,3,1,2,3,5,6], 0, 8))
