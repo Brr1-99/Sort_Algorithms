@@ -131,5 +131,33 @@ def partition(arr: list[int], left: int, right: int) -> int:
         arr[i], arr[right] = arr[right], arr[i]
     
     return i
+
+"""
+SelectionSort
+
+    Inner Loop:
+    - Search for the smallest number on the array
+    - Comparing the left-most number(start of iteration) with the rest
+    - Swap minimum value with the start
+    - The left-most number is now sorted
+    - We reduce by 1 the number of iterations in each inner loop
+
+    Outer Loop:
+    - Repeat the inner loop (length of the list - 1) times exiting the loop if isSorted is True.
+    - Time complexity is O(n^2).
+    - Only used for small sets of data
+"""
+
+def SelectionSort(arr: list[int]) -> list[int]:
+    for i in range(0, len(arr) - 1):
+        current_min_idx = i
+        for j in range(i+1, len(arr)):
+            if arr[j] < arr[current_min_idx]:
+                current_min_idx = j
+
+        arr[i], arr[current_min_idx] = arr[current_min_idx], arr[i]
+
+    return arr
+
     
-print(quick_sort([4,6,2,3,1,2,3,5,6], 0, 8))
+print(SelectionSort([4,6,2,3,1,2,3,5,6]))
