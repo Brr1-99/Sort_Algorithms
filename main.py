@@ -159,5 +159,4 @@ def SelectionSort(arr: list[int]) -> list[int]:
 
     return arr
 
-    
-print(SelectionSort([4,6,2,3,1,2,3,5,6]))
+print(partition([6,4,2,5,3,1], 2, 4))
